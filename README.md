@@ -11,6 +11,8 @@
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/piggy-bank.svg)](https://greenkeeper.io/)
+
 ## Usage
 
 
