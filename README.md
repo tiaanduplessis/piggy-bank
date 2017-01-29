@@ -1,4 +1,7 @@
-<h1 align="center">piggy-bank</h1>
+<div align="center">
+  <img src="media/banner.png" alt="piggy-bank">
+</div>
+<br>
 <div align="center">
   <strong>🐷 Just a local, JSON based persistence option 🐷</strong>
 </div>
@@ -31,6 +34,7 @@
 <h2>Table of Contents</h2>
 <details>
   <summary>Table of Contents</summary>
+  <li><a href="#motivation">Motivation</a></li>
   <li><a href="#features">Features</a></li>
   <li><a href="#install">Install</a></li>
   <li><a href="#usage">Usage</a></li>
@@ -39,8 +43,16 @@
   <li><a href="#license">License</a></li>
 </details>
 
+## Motivation
+
+This module provides a simple local persistence option for cases when that is all you need.
+
 ## Features
 
+- Simple local persistence in a JSON file you specify
+- Small API
+- Supports retreival of properties using regexp or dot path notation
+- Supports setting properties using dot path notation
 
 ## Install
 
@@ -55,12 +67,39 @@ $ yarn add piggy-bank
 ## Usage
 
 ```js
-const piggyBank = require('piggy-bank');
+
+const piggyBank = require('piggy-bank')() // Creates a new JSON file with the name provided else it defaults to piggyBank.json
+
+// Set properties on JSON file
+piggyBank.set('foo', 1)
+piggyBank.set('bar.baz', 1)
+piggyBank.set('baz.foo.bar', 1)
+piggyBank.set('bar.foo', 1)
+
+// Get the entire store
+console.log(piggyBank.store()) // { foo: 1, bar: { baz: 1, foo: 1 }, baz: { foo: { bar: 1 } } }
+
+// Get from store using dot path notation or regular expressions
+console.log(piggyBank.get('foo')) // 1
+console.log(piggyBank.get('bar')) // { baz: 1, foo: 1 }
+console.log(piggyBank.get('baz')) // { foo: { bar: 1 } }
+console.log(piggyBank.get('notDefined')) // undefined
+console.log(piggyBank.get('baz.foo')) // { bar: 1 }
+console.log(piggyBank.get(/foo/)) // [ 1, 1, { bar: 1 } ]
+console.log(piggyBank.get(/bar/)) // { foo: 1, bar: 2, baz: 3 }
+
+// Set a new store
+const store = {
+  foo: 1,
+  bar: 2,
+  baz: 3
+}
+
+console.log(piggyBank.store(store)) // { foo: 1, bar: 2, baz: 3 }
+
 ```
 
-## API
-
-
+## API - WIP
 
 ## Contribute
 
