@@ -3,7 +3,7 @@
 </div>
 <br>
 <div align="center">
-  <strong>🐷 Just a local, JSON based persistence option 🐷</strong>
+  <strong>🐷 Just a local, JSON based store 🐷</strong>
 </div>
 <br>
 <div align="center">

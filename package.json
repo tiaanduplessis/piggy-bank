@@ -1,7 +1,7 @@
 {
   "name": "piggy-bank",
   "version": "1.0.0",
-  "description": "Just a local, JSON based persistence option",
+  "description": "Just a local, JSON based store",
   "license": "MIT",
   "main": "index.js",
   "repository": {
@@ -21,7 +21,7 @@
     "lint": "standard --verbose",
     "lint:fix": "standard --fix --verbose",
     "pretest": "npm run lint:fix",
-    "test": "mocha"
+    "test": "jest"
   },
   "keywords": [
     "json,",
@@ -37,9 +37,7 @@
     "obj-search": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "del": "^2.2.2",
-    "mocha": "^3.2.0",
-    "standard": "^8.6.0"
+    "standard": "^10.0.2"
   }
 }

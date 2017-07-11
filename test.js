@@ -1,3 +1,2 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 'use strict'
-
