@@ -11,8 +11,8 @@ const { readJSON, writeJSON } = require('json-reader-writer')
 /**
  * Provide a read & write function for creating a new piggyBank function
  */
-function createPiggyBank(read, write) {
-  return function(filePath = defaultPath, opts = defaultOpts) {
+function createPiggyBank (read, write) {
+  return function (filePath = defaultPath, opts = defaultOpts) {
     // Create file if it does not exist prior to read
     if (!fs.existsSync(filePath)) {
       write(filePath, {})
