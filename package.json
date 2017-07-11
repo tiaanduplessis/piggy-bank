@@ -1,6 +1,6 @@
 {
   "name": "piggy-bank",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Just a local, JSON based store",
   "license": "MIT",
   "main": "index.js",
