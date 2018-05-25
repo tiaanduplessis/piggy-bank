@@ -1,10 +1,9 @@
 'use strict'
 
 const path = require('path')
-const fs = require('graceful-fs')
+const fs = require('fs')
 const dotProp = require('dot-prop')
-const defaultOpts = {}
-const defaultPath = path.join(process.cwd(), 'piggyBank.json')
+const defaultPath = path.join(require('os').homedir(), '.pomd.json')
 const search = require('obj-search')
 const { readJSON, writeJSON } = require('json-reader-writer')
 
@@ -12,54 +11,40 @@ const { readJSON, writeJSON } = require('json-reader-writer')
  * Provide a read & write function for creating a new piggyBank function
  */
 function createPiggyBank (read, write) {
-  return function (filePath = defaultPath, opts = defaultOpts) {
-    // Create file if it does not exist prior to read
+  return function piggyBank (filePath = defaultPath, opts = {}) {
+    let currentStore = {}
+
     if (!fs.existsSync(filePath)) {
       write(filePath, {})
+    } else {
+      currentStore = read(filePath)
     }
 
-    // Create new or read from existing JSON file
-    let _store = read(filePath)
-
-    /**
-     * Set the key to value specified & write changes to file
-     */
     const set = (key, value, opts = { overwrite: false }) => {
-      // Check if key already exists & overwrite false
-      if (dotProp.has(_store, key) && !opts.overwrite) {
-        throw new Error('Key already exists in _store')
+      if (dotProp.has(currentStore, key) && !opts.overwrite) {
+        throw new Error(`Key "${key}" already exists in store`)
       }
 
-      dotProp.set(_store, key, value)
-      return write(filePath, _store)
+      dotProp.set(currentStore, key, value)
+      return write(filePath, currentStore)
     }
 
-    /**
-     * Retreive the specified key from store if it exists
-     */
-    const get = (key, opts = {}) => {
-      return search(_store, key, opts.defaultValue)
+    const get = (key, defaultValue) => {
+      return search(currentStore, key, defaultValue)
     }
 
-    /**
-     * Remove the argument key from the store and write changes
-     */
     const remove = key => {
-      dotProp.delete(_store, key)
-      return write(filePath, _store)
+      dotProp.delete(currentStore, key)
+      return write(filePath, currentStore)
     }
 
-    /**
-     * Set the store based on provided newStore argument
-     * or get the current store if no argument provided
-     */
     const store = newStore => {
       if (newStore) {
-        _store = newStore
-        write(filePath, _store)
+        currentStore = newStore
+        write(filePath, currentStore)
       }
 
-      return _store
+      return currentStore
     }
 
     return {

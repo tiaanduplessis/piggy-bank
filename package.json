@@ -1,7 +1,7 @@
 {
   "name": "piggy-bank",
-  "version": "1.0.1",
-  "description": "Just a local, JSON based store",
+  "version": "2.0.0",
+  "description": "Simple, local JSON file store",
   "license": "MIT",
   "main": "index.js",
   "repository": {
@@ -10,35 +10,35 @@
   },
   "homepage": "https://github.com/tiaanduplessis/piggy-bank",
   "bugs": "https://github.com/tiaanduplessis/piggy-bank/issues",
-  "author": {
-    "name": "Tiaan",
-    "email": "tiaanduplessis@hotmail.com",
-    "url": "tiaanduplessis.co.za"
-  },
+  "author": "Tiaan du Plessis",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "npm test -- -w",
-    "lint": "standard --verbose",
-    "lint:fix": "standard --fix --verbose",
-    "pretest": "npm run lint:fix",
-    "test": "jest"
+    "lint": "standard --fix",
+    "pretest": "npm run lint",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "keywords": [
     "json,",
     "fs,",
     "persistence,",
     "db",
-    "piggy-bank"
+    "piggy-bank",
+    "store",
+    "file"
   ],
   "dependencies": {
-    "dot-prop": "^4.1.0",
-    "graceful-fs": "^4.1.11",
+    "dot-prop": "^4.2.0",
     "json-reader-writer": "^1.0.3",
-    "obj-search": "^1.0.0"
+    "obj-search": "^1.0.1"
   },
   "devDependencies": {
-    "del": "^2.2.2",
-    "jest": "^20.0.4",
-    "standard": "^10.0.2"
+    "del": "^3.0.0",
+    "jest": "^23.0.0",
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "env": {
+      "jest": true
+    }
   }
 }

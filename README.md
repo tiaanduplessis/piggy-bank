@@ -1,79 +1,49 @@
-<div align="center">
-  <img src="media/banner.png" alt="piggy-bank">
-</div>
-<br>
-<div align="center">
-  <strong>🐷 Just a local, JSON based store 🐷</strong>
-</div>
-<br>
-<div align="center">
-    <a href="https://npmjs.org/package/piggy-bank">
-      <img src="https://img.shields.io/npm/v/piggy-bank.svg?style=flat-square" alt="NPM version" />
-    </a>
-    <a href="https://npmjs.org/package/piggy-bank">
-    <img src="https://img.shields.io/npm/dm/piggy-bank.svg?style=flat-square" alt="Downloads" />
-    </a>
-    <a href="https://github.com/feross/standard">
-      <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="Standard" />
-    </a>
-    <a href="https://travis-ci.org/tiaanduplessis/piggy-bank">
-      <img src="https://img.shields.io/travis/tiaanduplessis/piggy-bank/master.svg?style=flat-square" alt="Travis build" />
-    </a>
-    <a href="https://github.com/RichardLitt/standard-readme)">
-      <img src="https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square" alt="Standard Readme" />
-    </a>
-    <a href="https://badge.fury.io/gh/tiaanduplessis%2Fpiggy-bank">
-      <img src="https://badge.fury.io/gh/tiaanduplessis%2Fpiggy-bank.svg?style=flat-square" alt="GitHub version" />
-   </a>
-</div>
-<br>
-<div align="center">
-  Built with ❤︎ by <a href="tiaanduplessis.co.za">Tiaan du Plessis</a> and <a href="https://github.com/tiaanduplessis/piggy-bank/graphs/contributors">contributors</a>
-</div>
 
-<h2>Table of Contents</h2>
-<details>
-  <summary>Table of Contents</summary>
-  <li><a href="#motivation">Motivation</a></li>
-  <li><a href="#features">Features</a></li>
-  <li><a href="#install">Install</a></li>
-  <li><a href="#usage">Usage</a></li>
-  <li><a href="#api">API</a></li>
-  <li><a href="#contribute">Contribute</a></li>
-  <li><a href="#license">License</a></li>
-</details>
+# piggy-bank 🐷
+[![package version](https://img.shields.io/npm/v/piggy-bank.svg?style=flat-square)](https://npmjs.org/package/piggy-bank)
+[![package downloads](https://img.shields.io/npm/dm/piggy-bank.svg?style=flat-square)](https://npmjs.org/package/piggy-bank)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![package license](https://img.shields.io/npm/l/piggy-bank.svg?style=flat-square)](https://npmjs.org/package/piggy-bank)
+[![make a pull request](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-## Motivation
+> Simple, local JSON file store
 
-This module provides a simple local persistence option for cases when that is all you need.
+## Table of Contents
 
-## Features
+- [About](#about)
+- [Install](#install)
+- [Usage](#usage)
+- [Contribute](#contribute)
+- [License](#License)
+
+## About
 
 - Simple local persistence in a JSON file you specify
-- Small API
+- Small API of `set`, `get`, `remove` & `store`
 - Supports retreival of properties using regexp or dot path notation
 - Supports setting properties using dot path notation
 
 ## Install
 
-```sh
-$ npm install --save piggy-bank
-```
+This project uses [node](https://nodejs.org) and [npm](https://www.npmjs.com). 
 
 ```sh
+$ npm install piggy-bank
+$ # OR
 $ yarn add piggy-bank
 ```
 
 ## Usage
 
 ```js
-
-const piggyBank = require('piggy-bank')() // Creates a new JSON file with the name provided else it defaults to piggyBank.json
+const piggyBank = require('piggy-bank')() // Creates a new JSON file at the path provided
+                                          // Defaults to .piggy.json in OS home dir
 
 // Set properties on JSON file
 piggyBank.set('foo', 1)
 piggyBank.set('bar.baz', 1)
-piggyBank.set('baz.foo.bar', 1)
+piggyBank.set('baz.foo.bar', 5)
+piggyBank.set('baz.foo.bar', 1, {overwrite: true}) // Force
 piggyBank.set('bar.foo', 1)
 
 // Get the entire store
@@ -97,16 +67,17 @@ const store = {
 
 console.log(piggyBank.store(store)) // { foo: 1, bar: 2, baz: 3 }
 
+piggyBank.remove('foo') // Remove key
 ```
-
-## API - WIP
 
 ## Contribute
 
-Contributions are welcome. Please open up an issue or create PR if you would like to help out.
-
-Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+1. Fork it and create your feature branch: git checkout -b my-new-feature
+2. Commit your changes: git commit -am 'Add some feature'
+3. Push to the branch: git push origin my-new-feature 
+4. Submit a pull request
 
 ## License
 
-Licensed under the MIT License.
+MIT
+    
