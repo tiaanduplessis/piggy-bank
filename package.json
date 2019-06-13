@@ -27,7 +27,7 @@
     "file"
   ],
   "dependencies": {
-    "dot-prop": "^4.2.0",
+    "dot-prop": "^5.0.0",
     "json-reader-writer": "^1.0.3",
     "obj-search": "^1.0.1"
   },
