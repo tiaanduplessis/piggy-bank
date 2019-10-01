@@ -2180,7 +2180,7 @@ jest-worker@^23.0.0:
   dependencies:
     merge-stream "^1.0.1"
 
-jest@^23.0.0:
+jest@23.0.0:
   version "23.0.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-23.0.0.tgz#9282980309f5cde27aadc59ae583f1117c0e4430"
   dependencies:
@@ -3450,7 +3450,7 @@ standard-engine@~8.0.0:
     minimist "^1.1.0"
     pkg-conf "^2.0.0"
 
-standard@^11.0.1:
+standard@11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/standard/-/standard-11.0.1.tgz#49be40c76f1d564964b22bbf7309929ad0335e29"
   dependencies:
