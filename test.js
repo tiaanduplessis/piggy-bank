@@ -1,14 +1,17 @@
 'use strict'
 
 const fs = require('fs')
-const del = require('del')
+const os = require('os')
+const path = require('path')
 const createStore = require('./index')
 
-const filePath = './test.json'
-
+let directory
+let filePath
 let store
 
 beforeEach(() => {
+  directory = fs.mkdtempSync(path.join(os.tmpdir(), 'piggy-bank-'))
+  filePath = path.join(directory, 'test.json')
   store = createStore(filePath)
 })
 
@@ -55,6 +58,10 @@ test('should remove a value', () => {
 })
 
 afterEach(() => {
-  store.store({})
-  del(filePath)
+  try {
+    fs.unlinkSync(filePath)
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+  }
+  fs.rmdirSync(directory)
 })
